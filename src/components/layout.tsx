@@ -9,16 +9,23 @@ import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
-import "./layout.css"
+
 import { AppBar, createStyles, makeStyles, Theme, Toolbar } from "@material-ui/core"
 
+
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+{
+  debugger
+ return createStyles({
     href: {
       margin: 20,
       color: "white"
+    },
+    appBar:{
+      width: '100%'
     }
   })
+}
 );
 
 interface Props{
@@ -38,8 +45,9 @@ const Layout = ({ children }:Props) => {
   `)
 
   return (
-    <>
-      {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
+   
+      
+      <>
       <AppBar position="static">
           <Toolbar>
             <Link className={classes.href} to="/">
@@ -57,23 +65,9 @@ const Layout = ({ children }:Props) => {
           </Toolbar>
         </AppBar>
         <main>{children}</main>
-      {/* <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div> */}
-    </>
+        </>
+      
+   
   )
 }
 
