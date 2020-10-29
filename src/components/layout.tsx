@@ -6,16 +6,27 @@
  */
 
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
+import { AppBar, createStyles, makeStyles, Theme, Toolbar } from "@material-ui/core"
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    href: {
+      margin: 20,
+      color: "white"
+    }
+  })
+);
 
 interface Props{
   children: React.ReactNode
 }
 
 const Layout = ({ children }:Props) => {
+  const classes = useStyles({});
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -28,8 +39,25 @@ const Layout = ({ children }:Props) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
+      {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
+      <AppBar position="static">
+          <Toolbar>
+            <Link className={classes.href} to="/">
+              Home
+            </Link>
+            <Link className={classes.href} to="/app/cars">
+              Cars
+            </Link>
+            <Link className={classes.href} to="/app/cities">
+              Cities
+            </Link>
+            <Link className={classes.href} to="/app/countries">
+              Countries
+            </Link>
+          </Toolbar>
+        </AppBar>
+        <main>{children}</main>
+      {/* <div
         style={{
           margin: `0 auto`,
           maxWidth: 960,
@@ -44,7 +72,7 @@ const Layout = ({ children }:Props) => {
           {` `}
           <a href="https://www.gatsbyjs.com">Gatsby</a>
         </footer>
-      </div>
+      </div> */}
     </>
   )
 }

@@ -6,6 +6,7 @@ import Image from "../components/image"
 
 
 const IndexPage = () => (
+  
   <Layout>
    
     <h1>Hi people</h1>
@@ -15,8 +16,9 @@ const IndexPage = () => (
       <Image />
     </div>
     <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    <Link to="/app/cars">Go to Cars</Link>
   </Layout>
+ 
 )
 
 export default IndexPage
