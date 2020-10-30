@@ -19,8 +19,11 @@ const Image = () => {
       placeholderImage: file(relativePath: { eq: "gate.jpg" }) {
         childImageSharp {
           fluid {
-            ...GatsbyImageSharpFluid
-            ...GatsbyImageSharpFluidLimitPresentationSize
+            base64
+            aspectRatio
+            sizes
+            src
+            srcSet
           }
         }
       }
