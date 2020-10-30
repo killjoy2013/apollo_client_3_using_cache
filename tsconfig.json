@@ -35,5 +35,5 @@
     "jest",
     "src/setupTests.ts"
   ],
-  "include": ["src"]
+  "include": ["src", "graphql"]
 }

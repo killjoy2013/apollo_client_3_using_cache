@@ -18,12 +18,14 @@ const Image = () => {
     query {
       placeholderImage: file(relativePath: { eq: "gate.jpg" }) {
         childImageSharp {
-          fluid {
+          fluid(maxWidth: 300) {
             base64
             aspectRatio
             sizes
             src
             srcSet
+            originalImg
+            originalName
           }
         }
       }
