@@ -88,8 +88,8 @@ const CityForm = (props: CityFormProps) => {
           color="textSecondary">
           {`City form is persisted ${formik.submitCount}. time`}
         </Typography>
+        <DisplayFormikState {...formik.values} />
       </Grid>
-      <DisplayFormikState {...formik.values} />
     </form>
   );
 };

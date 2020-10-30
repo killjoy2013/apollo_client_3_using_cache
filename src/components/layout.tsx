@@ -1,52 +1,34 @@
-import {
-  AppBar,
-  createStyles,
-  makeStyles,
-  Theme,
-  Toolbar,
-} from '@material-ui/core';
-import { Link } from 'gatsby';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
 
-const useStyles = makeStyles((theme: Theme) => {
-  return createStyles({
-    href: {
-      margin: 20,
-      color: 'white',
-    },
-    appBar: {
-      width: '100%',
-    },
-  });
-});
+import Header from './header';
+import { Paper } from '@material-ui/core';
 
 interface Props {
   children: React.ReactNode;
 }
 
 const Layout = ({ children }: Props) => {
-  const classes = useStyles({});
-
   return (
     <>
-      <AppBar position="static">
-        <Toolbar>
-          <Link className={classes.href} to="/">
-            Home
-          </Link>
-
-          <Link className={classes.href} to="/cars">
-            Cars
-          </Link>
-          <Link className={classes.href} to="/cities">
-            Cities
-          </Link>
-          <Link className={classes.href} to="/countries">
-            Countries
-          </Link>
-        </Toolbar>
-      </AppBar>
-      <main>{children}</main>
+      <Header />
+      <div
+        style={{
+          margin: `0 auto`,
+          maxWidth: 960,
+          padding: `0 1.0875rem 1.45rem`,
+        }}>
+        <main>{children}</main>
+        <footer
+          style={{
+            marginTop: `2rem`,
+          }}>
+          © {new Date().getFullYear()}, Built with
+          {` `}
+          <a href="https://www.gatsbyjs.com">Gatsby</a>
+        </footer>
+      </div>
     </>
   );
 };

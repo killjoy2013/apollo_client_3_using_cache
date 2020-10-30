@@ -40,70 +40,73 @@ const Countries: React.FunctionComponent<CounriesProps> = (
 
   return (
     <Layout>
-      <Grid>
-        <TextField onChange={(e) => setArg(e.target.value)}></TextField>
-        <Button
-          onClick={() =>
-            countriesLazy({
-              variables: {
-                arg: {
-                  code: { regex: arg },
+      <Grid container direction="column" justify="center" alignItems="center">
+        <Grid container direction="row" justify="center" alignItems="center">
+          <TextField onChange={(e) => setArg(e.target.value)}></TextField>
+          <Button
+            onClick={() =>
+              countriesLazy({
+                variables: {
+                  arg: {
+                    code: { regex: arg },
+                  },
                 },
-              },
-            })
-          }>
-          Query
-        </Button>
-      </Grid>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error :-(</p>}
-      {data && (
-        <TableContainer style={{ height: 300 }} component={Paper}>
-          <Table
-            className={classes.table}
-            size="small"
-            aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                <TableCell></TableCell>
-                <TableCell align="center">Code</TableCell>
-                <TableCell align="left">Name</TableCell>
-                <TableCell align="left">Capital</TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.countries.map((country) => (
-                <TableRow key={country.code}>
-                  <TableCell align="center">
-                    <input
-                      type="checkbox"
-                      checked={country.selected}
-                      onChange={() => {
-                        const { __typename, selected, ...rest } = country;
-                        selectedCountryVar({ ...rest });
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell align="center">{country.code}</TableCell>
-                  <TableCell align="left">{country.name}</TableCell>
-                  <TableCell align="left">{country.capital}</TableCell>
-                  <TableCell align="center">
-                    <button
-                      onClick={() => {
-                        cache.evict({ id: cache.identify(country) });
-                        cache.gc();
-                      }}>
-                      Delete
-                    </button>
-                  </TableCell>
+              })
+            }>
+            Query
+          </Button>
+        </Grid>
+
+        {loading && <p>Loading...</p>}
+        {error && <p>Error :-(</p>}
+        {data && (
+          <TableContainer style={{ height: 300 }} component={Paper}>
+            <Table
+              className={classes.table}
+              size="small"
+              aria-label="a dense table">
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell align="center">Code</TableCell>
+                  <TableCell align="left">Name</TableCell>
+                  <TableCell align="left">Capital</TableCell>
+                  <TableCell></TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
-      <DisplayFormikState {...selectedCountryVar()} />
+              </TableHead>
+              <TableBody>
+                {data.countries.map((country) => (
+                  <TableRow key={country.code}>
+                    <TableCell align="center">
+                      <input
+                        type="checkbox"
+                        checked={country.selected}
+                        onChange={() => {
+                          const { __typename, selected, ...rest } = country;
+                          selectedCountryVar({ ...rest });
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell align="center">{country.code}</TableCell>
+                    <TableCell align="left">{country.name}</TableCell>
+                    <TableCell align="left">{country.capital}</TableCell>
+                    <TableCell align="center">
+                      <button
+                        onClick={() => {
+                          cache.evict({ id: cache.identify(country) });
+                          cache.gc();
+                        }}>
+                        Delete
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+        <DisplayFormikState {...selectedCountryVar()} />
+      </Grid>
     </Layout>
   );
 };

@@ -126,8 +126,8 @@ const CarForm: React.FunctionComponent<CarFormProps> = (
           color="textSecondary">
           {`Car form is persisted ${formik.submitCount}. time`}
         </Typography>
+        <DisplayFormikState {...formik.values} />
       </Grid>
-      <DisplayFormikState {...formik.values} />
     </form>
   );
 };

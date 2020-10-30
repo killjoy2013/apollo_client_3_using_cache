@@ -4,23 +4,12 @@ import Image from '../components/image';
 import Layout from '../components/layout';
 import './index.css';
 
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       flexGrow: 1,
-//     },
-//     paper: {
-//       padding: theme.spacing(2),
-//       textAlign: 'center',
-//       color: theme.palette.text.secondary,
-//     },
-//   })
-// );
-
 export default function Home() {
-  // const classes = useStyles();
   return (
     <Layout>
+      <h1>Hi people</h1>
+      <p>This is Gatsby & Graphql Code Generator & Apollo Client 3</p>
+
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
       </div>
