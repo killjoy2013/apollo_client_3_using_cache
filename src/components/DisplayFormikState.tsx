@@ -4,7 +4,7 @@ const DisplayFormikState = (formikProps: any) => (
   <div style={{ margin: '1rem 0' }}>
     <pre
       style={{
-        background: '#f6f8fa',
+        background: 'white',
         fontSize: '.9rem',
         padding: '.5rem',
       }}>

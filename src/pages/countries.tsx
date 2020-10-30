@@ -53,7 +53,6 @@ const Countries: React.FunctionComponent<CounriesProps> = (
   props: CounriesProps
 ) => {
   const classes = useStyles();
-  //const {data, loading, error} = useCountriesQuery()
 
   useEffect(() => {
     countriesLazy();
@@ -127,14 +126,6 @@ const Countries: React.FunctionComponent<CounriesProps> = (
                         }}
                         inputProps={{ 'aria-label': 'primary checkbox' }}
                       />
-                      {/* <input
-                        type="checkbox"
-                        checked={country.selected}
-                        onChange={() => {
-                          const { __typename, selected, ...rest } = country;
-                          selectedCountryVar({ ...rest });
-                        }}
-                      /> */}
                     </TableCell>
                     <TableCell align="center">{country.code}</TableCell>
                     <TableCell align="left">{country.name}</TableCell>
