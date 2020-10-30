@@ -14,7 +14,7 @@ import {
   City
 } from "../../graphql/types";
 import clsx from "clsx";
-import {cityFormVar} from '../../cache'
+import {cityFormVar} from '../../apollo/cache'
 import { RouteComponentProps } from "@reach/router";
 import Layout from "../components/layout";
 

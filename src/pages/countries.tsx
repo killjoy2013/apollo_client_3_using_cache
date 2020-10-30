@@ -8,11 +8,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { selectedCountryVar, cache } from '../../cache';
+import { selectedCountryVar, cache } from '../../apollo/cache';
 
 import clsx from "clsx";
 import { useCountriesLazyQuery, useCountriesQuery } from '../../graphql/types';
-import DisplayFormikState from './DisplayFormikState';
+import DisplayFormikState from '../modules/DisplayFormikState'
 import { Button, Grid, TextField } from '@material-ui/core';
 import { RouteComponentProps } from '@reach/router';
 import Layout from '../components/layout';

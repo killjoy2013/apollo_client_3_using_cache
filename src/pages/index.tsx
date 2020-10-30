@@ -16,6 +16,7 @@ const IndexPage = () => (
       <Image />
     </div>
     <Link to="/page-2/">Go to page 2</Link> <br />
+    <Link to="/rick/">Go Rick</Link> <br />
     <Link to="/app/cars">Go to Cars</Link>
   </Layout>
  

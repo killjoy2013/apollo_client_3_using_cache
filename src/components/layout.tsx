@@ -14,8 +14,7 @@ import { AppBar, createStyles, makeStyles, Theme, Toolbar } from "@material-ui/c
 
 
 const useStyles = makeStyles((theme: Theme) =>
-{
-  debugger
+{ 
  return createStyles({
     href: {
       margin: 20,
@@ -59,7 +58,7 @@ const Layout = ({ children }:Props) => {
             <Link className={classes.href} to="/app/cities">
               Cities
             </Link>
-            <Link className={classes.href} to="/app/countries">
+            <Link className={classes.href} to="/countries">
               Countries
             </Link>
           </Toolbar>

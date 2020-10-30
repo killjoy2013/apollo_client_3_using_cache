@@ -20,7 +20,7 @@ import {
   Car
 } from "../../graphql/types";
 import DisplayFormikState from "./DisplayFormikState";
-import {carFormVar} from '../../cache'
+import {carFormVar} from '../../apollo/cache'
 import { RouteComponentProps } from "@reach/router";
 import Layout from "../components/layout";
 

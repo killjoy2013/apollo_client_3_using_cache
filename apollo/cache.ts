@@ -1,6 +1,6 @@
 
 import { InMemoryCache, makeVar } from '@apollo/client';
-import { Car, City, Country, SelectedCountryType } from './graphql/types';
+import { Car, City, Country, SelectedCountryType } from '../graphql/types';
 
 export const cache: InMemoryCache = new InMemoryCache({
     typePolicies:{

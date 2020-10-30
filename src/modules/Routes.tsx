@@ -3,7 +3,7 @@ import { Router} from "@reach/router";
 import { Link } from "@reach/router";
 import Cars from "./Cars";
 import Cities from "./Cities";
-import Countries from './Countries';
+//import Countries from '../pages/Countries';
 
 import {
   AppBar,
@@ -48,7 +48,7 @@ const Routes = () => {
       </div> */}
       <Cars path="/app/cars" />
       <Cities path="/app/cities" />
-      <Countries path="/app/countries" />
+      {/* <Countries path="/app/countries" /> */}
     </Router>
   );
 };
