@@ -8,6 +8,7 @@ import {
   Theme,
   createStyles,
   Typography,
+  Paper,
 } from '@material-ui/core';
 import DisplayFormikState from '../components/DisplayFormikState';
 import { City } from '../../graphql/types';
@@ -31,6 +32,11 @@ const useStyles = makeStyles((theme: Theme) =>
     hidden: {
       visibility: 'hidden',
     },
+    paper: {
+      width: '100%',
+      margin: '20px 0px 0px 0px',
+      padding: 20,
+    },
   })
 );
 
@@ -45,51 +51,53 @@ const CityForm = (props: CityFormProps) => {
 
   return (
     <form>
-      <Grid container direction="column" justify="center" alignItems="center">
-        <TextField
-          className={classes.input}
-          name="name"
-          label="Name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          variant="outlined"
-          margin="normal"
-        />
+      <Paper variant="outlined" className={classes.paper}>
+        <Grid container direction="column" justify="center" alignItems="center">
+          <TextField
+            className={classes.input}
+            name="name"
+            label="Name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            variant="outlined"
+            margin="normal"
+          />
 
-        <TextField
-          className={classes.input}
-          name="country"
-          label="Country"
-          value={formik.values.country}
-          onChange={formik.handleChange}
-          variant="outlined"
-          margin="normal"
-        />
+          <TextField
+            className={classes.input}
+            name="country"
+            label="Country"
+            value={formik.values.country}
+            onChange={formik.handleChange}
+            variant="outlined"
+            margin="normal"
+          />
 
-        <TextField
-          className={classes.input}
-          name="population"
-          label="Population"
-          value={formik.values.population}
-          onChange={formik.handleChange}
-          variant="outlined"
-          margin="normal"
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={() => formik.submitForm()}>
-          Persist Cities
-        </Button>
-        <Typography
-          className={submitCountClassName}
-          variant="subtitle1"
-          color="textSecondary">
-          {`City form is persisted ${formik.submitCount}. time`}
-        </Typography>
-        <DisplayFormikState {...formik.values} />
-      </Grid>
+          <TextField
+            className={classes.input}
+            name="population"
+            label="Population"
+            value={formik.values.population}
+            onChange={formik.handleChange}
+            variant="outlined"
+            margin="normal"
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={() => formik.submitForm()}>
+            Persist Cities
+          </Button>
+          <Typography
+            className={submitCountClassName}
+            variant="subtitle1"
+            color="textSecondary">
+            {`City form is persisted ${formik.submitCount}. time`}
+          </Typography>
+          <DisplayFormikState {...formik.values} />
+        </Grid>
+      </Paper>
     </form>
   );
 };

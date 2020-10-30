@@ -7,18 +7,43 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { selectedCountryVar, cache } from '../../apollo/cache';
 
 import clsx from 'clsx';
 import { useCountriesLazyQuery, useCountriesQuery } from '../../graphql/types';
 import DisplayFormikState from '../components/DisplayFormikState';
-import { Button, Grid, TextField } from '@material-ui/core';
+import {
+  Button,
+  Checkbox,
+  Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 import { RouteComponentProps } from '@reach/router';
 import Layout from '../components/layout';
 
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
+  },
+  checkbox: {
+    padding: 0,
+  },
+  deleteButton: {
+    margin: 0,
+    padding: 0,
+  },
+  paper: {
+    width: '100%',
+    margin: '20px 0px 0px 0px',
+    padding: 20,
+  },
+  tableContainer: {
+    height: 500,
+    margin: '20px 0px 0px 0px',
+    padding: 20,
   },
 });
 
@@ -41,26 +66,40 @@ const Countries: React.FunctionComponent<CounriesProps> = (
   return (
     <Layout>
       <Grid container direction="column" justify="center" alignItems="center">
-        <Grid container direction="row" justify="center" alignItems="center">
-          <TextField onChange={(e) => setArg(e.target.value)}></TextField>
-          <Button
-            onClick={() =>
-              countriesLazy({
-                variables: {
-                  arg: {
-                    code: { regex: arg },
+        <Paper variant="outlined" className={classes.paper}>
+          <Grid
+            item
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="center">
+            <TextField
+              label="code"
+              variant="outlined"
+              size="small"
+              onChange={(e) => setArg(e.target.value)}></TextField>
+            <Button
+              onClick={() =>
+                countriesLazy({
+                  variables: {
+                    arg: {
+                      code: { regex: arg },
+                    },
                   },
-                },
-              })
-            }>
-            Query
-          </Button>
-        </Grid>
+                })
+              }>
+              <Typography variant="caption">Query</Typography>
+            </Button>
+            <Button onClick={() => {}}>
+              <Typography variant="caption">Clear</Typography>
+            </Button>
+          </Grid>
+        </Paper>
 
         {loading && <p>Loading...</p>}
         {error && <p>Error :-(</p>}
         {data && (
-          <TableContainer style={{ height: 300 }} component={Paper}>
+          <TableContainer className={classes.tableContainer} component={Paper}>
             <Table
               className={classes.table}
               size="small"
@@ -78,26 +117,39 @@ const Countries: React.FunctionComponent<CounriesProps> = (
                 {data.countries.map((country) => (
                   <TableRow key={country.code}>
                     <TableCell align="center">
-                      <input
+                      <Checkbox
+                        className={classes.checkbox}
+                        checked={country.selected}
+                        disableRipple={true}
+                        onChange={() => {
+                          const { __typename, selected, ...rest } = country;
+                          selectedCountryVar({ ...rest });
+                        }}
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                      />
+                      {/* <input
                         type="checkbox"
                         checked={country.selected}
                         onChange={() => {
                           const { __typename, selected, ...rest } = country;
                           selectedCountryVar({ ...rest });
                         }}
-                      />
+                      /> */}
                     </TableCell>
                     <TableCell align="center">{country.code}</TableCell>
                     <TableCell align="left">{country.name}</TableCell>
                     <TableCell align="left">{country.capital}</TableCell>
                     <TableCell align="center">
-                      <button
+                      <IconButton
+                        disableRipple={true}
+                        disableFocusRipple={true}
+                        className={classes.deleteButton}
                         onClick={() => {
                           cache.evict({ id: cache.identify(country) });
                           cache.gc();
                         }}>
-                        Delete
-                      </button>
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}
