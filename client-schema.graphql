@@ -1,0 +1,24 @@
+type Car {
+  brand: String
+  model: String
+  year: String
+  fastEnough: Boolean!
+}
+
+type City {
+  name: String
+  country: String
+  population: Int
+}
+
+extend type Country{
+  selected: Boolean
+}
+
+type SelectedCountryType{
+  code: String
+  name: String  
+  capital: String
+}
+
+
