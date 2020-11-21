@@ -1,29 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import DeleteIcon from '@material-ui/icons/Delete';
-import {
-  selectedCountryVar,
-  cache,
-  codeVar,
-  makeSelectedCountryType,
-} from '../../apollo/cache';
-
-import clsx from 'clsx';
-import {
-  useCountriesLazyQuery,
-  useCountriesQuery,
-  CountriesQuery,
-  CountriesQueryVariables,
-  SelectedCountryType,
-} from '../../graphql/types';
-import DisplayFormikState from '../components/DisplayFormikState';
+import { useApolloClient } from '@apollo/client';
 import {
   Button,
   Checkbox,
@@ -32,13 +7,32 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { RouteComponentProps } from '@reach/router';
-import Layout from '../components/layout';
-import { useReactiveVar, useApolloClient } from '@apollo/client';
-import { Formik, useFormikContext } from 'formik';
+import { Formik } from 'formik';
+import React, { useEffect } from 'react';
+import {
+  cache,
+  codeVar,
+  makeSelectedCountryType,
+  selectedCountryVar,
+} from '../../apollo/cache';
 import { Queries } from '../../apollo/queries';
-import { client } from '../../apollo/ApolloProxy';
-import { ContinentsQuery } from '../graphql/types';
+import {
+  CountriesQuery,
+  CountriesQueryVariables,
+  useCountriesLazyQuery,
+} from '../../graphql/types';
+import DisplayFormikState from '../components/DisplayFormikState';
+import Layout from '../components/layout';
 
 const useStyles = makeStyles({
   table: {
@@ -86,8 +80,6 @@ const Countries: React.FunctionComponent<CounriesProps> = (
   }, []);
 
   const [countriesLazy, { data, loading, error }] = useCountriesLazyQuery();
-
-  console.log('COUNTRIES RENDERED', data);
 
   return (
     <Layout>

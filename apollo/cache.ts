@@ -6,11 +6,6 @@ export const cache: InMemoryCache = new InMemoryCache({
     Country: {
       keyFields: ['code'],
       fields: {
-        nameWithEmoji: (_, { readField }) => {
-          const name = readField('name');
-          const emoji = readField('emoji');
-          return `${name} ${emoji}`;
-        },
         selected: (_, { readField }) => {
           const code = readField('code');
           return code === selectedCountryVar().code;

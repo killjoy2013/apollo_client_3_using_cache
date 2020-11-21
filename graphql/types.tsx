@@ -154,7 +154,7 @@ export type CountriesQuery = (
   { __typename?: 'Query' }
   & { countries: Array<(
     { __typename?: 'Country' }
-    & Pick<Country, 'code' | 'name' | 'emoji'>
+    & Pick<Country, 'code' | 'name' | 'capital' | 'emoji' | 'selected'>
   )> }
 );
 
@@ -164,7 +164,9 @@ export const CountriesDocument = gql`
   countries(filter: $arg) {
     code
     name
+    capital
     emoji
+    selected @client
   }
 }
     `;

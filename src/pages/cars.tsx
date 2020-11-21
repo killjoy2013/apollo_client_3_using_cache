@@ -62,8 +62,6 @@ const CarForm: React.FunctionComponent<CarFormProps> = (
     [classes.hidden]: formik.submitCount === 0,
   });
 
-  console.log('CARS RENDERED');
-
   return (
     <form>
       <Paper variant="outlined" className={classes.paper}>

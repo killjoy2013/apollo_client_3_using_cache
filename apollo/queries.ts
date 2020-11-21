@@ -5,7 +5,9 @@ const QUERY_COUNTRIES = gql`
     countries(filter: $arg) {
       code
       name
+      capital
       emoji
+      selected @client
     }
   }
 `;

@@ -91,7 +91,7 @@ const CityForm = (props: CityFormProps) => {
           />
 
           <DisplayFormikState {...formik.values} />
-          <Typography>Render count : {renderCount}</Typography>
+          <Typography>Form render count : {renderCount}</Typography>
         </Grid>
       </Paper>
     </form>
