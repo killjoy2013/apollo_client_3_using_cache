@@ -10,5 +10,5 @@ const link = ApolloLink.from([httpLink]);
 
 export const client = new ApolloClient({
   link,
-  cache: cache,
+  cache,
 });

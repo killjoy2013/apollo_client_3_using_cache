@@ -1,4 +1,3 @@
-import Grid from '@material-ui/core/Grid/Grid';
 import React from 'react';
 import Image from '../components/image';
 import Layout from '../components/layout';

@@ -22,14 +22,12 @@ const useStyles = makeStyles((theme: Theme) => {
 
 const Header = () => {
   const classes = useStyles({});
-
   return (
     <AppBar position="static">
       <Toolbar>
         <Link className={classes.href} to="/">
           Home
         </Link>
-
         <Link className={classes.href} to="/cars">
           Cars
         </Link>
