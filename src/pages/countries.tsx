@@ -79,7 +79,12 @@ const Countries: React.FunctionComponent<CounriesProps> = (
     queryHandler(codeVar());
   }, []);
 
-  const [countriesLazy, { data, loading, error }] = useCountriesLazyQuery();
+  const [countriesLazy, { data, loading, error }] = useCountriesLazyQuery({
+    fetchPolicy: 'cache-first',
+    nextFetchPolicy: 'cache-only',
+  });
+
+  console.log('COUNTRIES RENDERED');
 
   return (
     <Layout>
@@ -109,32 +114,15 @@ const Countries: React.FunctionComponent<CounriesProps> = (
                 </Button>
                 <Button
                   onClick={() => {
-                    if (data && data.countries && data.countries.length > 0) {
-                      selectedCountryVar(makeSelectedCountryType({}));
-                      client.writeQuery<
-                        CountriesQuery,
-                        CountriesQueryVariables
-                      >({
-                        query: Queries.QUERY_COUNTRIES,
-                        data: {
-                          countries: [],
-                        },
-                        variables: {
-                          arg: {
-                            code: { regex: codeVar() },
-                          },
-                        },
-                      });
-                      cache.evict({
-                        id: 'ROOT_QUERY',
-                        //fieldName: 'countries({"filter":{"code":{"regex":""}}})',
-                        fieldName: 'countries',
-                        broadcast: false,
-                      });
-                      cache.gc();
-                      codeVar('');
-                      resetForm();
-                    }
+                    selectedCountryVar(makeSelectedCountryType({}));
+                    cache.evict({
+                      id: 'ROOT_QUERY',
+                      fieldName: 'countries',
+                      broadcast: true,
+                    });
+                    cache.gc();
+                    codeVar('');
+                    resetForm();
                   }}>
                   <Typography variant="caption">Clear</Typography>
                 </Button>
